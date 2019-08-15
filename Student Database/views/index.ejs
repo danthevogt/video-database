@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music Library</title>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/1140/2.0/1140.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" />
+        <!--Link to CSS Stylesheet-->
+		<link rel="stylesheet" href="/styles.css" />
+		
+		<link rel="stylesheet" href="/styles2.css" />
+		
+		
+		<script src="/filter.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Cedarville+Cursive' rel='stylesheet' type='text/css'>
+		
+    </head>
+
+    <body>
+		<script>
+			function Like() {				
+				test[i].Likes = (test[i].Likes + 1);
+				
+				function posted() {
+					document.getElementById("LikeButton").submit();
+				}
+				
+				posted();
+			}
+			
+						
+		</script>
+		
+		
+		
+       <!--Table to display the database--> 
+        <table id="table1" class="table">
+            <thread>
+                <br>
+					
+			<caption><h2>Video List</h2><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Category" title="Type in a category"></caption>
+				
+                    <!--Main headers-->
+                <tr>
+                    <th>Category</th>
+                    <th>URL</th>
+                    <th>Description</th>
+                    <th>Likes</th>
+                    <th></th>
+                </tr>
+            </thread>
+
+            <tbody>
+                <!--Test holds the data from Student that we passed to index
+                IOW, it holds the records from the table student we grabbed using the select knex-->
+               <!--For loop to put data into the table-->
+                <% for (var i = 0; i < test.length; i++) {%>
+				
+				<tr><th></th></tr>
+                    <tr>
+                        <td><%= test[i].Category %></td>
+                        <td><iframe src="<%= test[i].URL %>" width="400" height="225"></iframe></td>
+                        <td><%= test[i].Description %></td>
+                        <td><form id="LikeButton" action="/Like/<%= test[i].VideoID %>" method="POST">
+								<div id="right" class="heart" onClick="Like()" style="cursor: pointer;"></div><h2><%= test[i].Likes %></h2>
+                            </form>							
+						</td> 
+                    </tr>
+                <% }%>                   
+            </tbody>
+        </table>
+            
+        </div>
+		
+		
+		
+		
+		
+    </body>
+</html>

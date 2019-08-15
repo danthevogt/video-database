@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music Library</title>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/1140/2.0/1140.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" />
+        <!--Link to CSS Stylesheet-->
+		<link rel="stylesheet" href="/styles.css" />
+		
+		<script>
+			function myFunction() {
+				var input, filter, table, tr, td, a, i, txtValue;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("table1");
+				tr = table.getElementsByTagName("tr")[2];
+				td = tr.getElementsByTagName("td");
+				for (i = 0; i < td.length; i++) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						td[i].style.display = "";
+					} else {
+						td[i].style.display = "none";
+					}
+				}
+			}
+</script>
+		
+    </head>
+
+    <body>
+       <!--Table to display the database--> 
+        <table id="table1" class="table">
+            <thread>
+                <br>
+					
+			<caption><h2>Video List</h2><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Category" title="Type in a category"></caption>
+				
+                    <!--Main headers-->
+                <tr>
+					<th></th>
+                    <th>Category</th>
+                    <th>URL</th>
+                    <th>Description</th>
+                    <th>Likes</th>
+                    <th></th>
+                </tr>
+            </thread>
+
+            <tbody>
+                <!--Test holds the data from Student that we passed to index
+                IOW, it holds the records from the table student we grabbed using the select knex-->
+               <!--For loop to put data into the table-->
+                <% for (var i = 0; i < test.length; i++) {%>
+				
+				<tr><th></th></tr>
+                    <tr>
+                        <td>
+                           <!--Delete video button-->
+                            <form action="/Delete/<%= test[i].VideoID %>" method="POST">
+                                <input type="submit" name="Delete" value="Delete" />
+                            </form>
+                        </td>
+                        <td><%= test[i].Category %></td>
+                        <td><%= test[i].URL %></td>
+                        <td><%= test[i].Description %></td>
+                        <td><%= test[i].Likes %></td>
+                        <td>
+                           <!--Edit video button-->
+                            <form action="/EditVideo/<%= test[i].VideoID %>" method="GET">
+                                <input type="submit" id="right" value="Edit" />
+                            </form>
+                        </td>
+                    </tr>
+                <% }%>                   
+            </tbody>
+        </table>
+            
+        </div><br><br>
+		
+		<div>
+			
+			
+		 <!--From to add the video-->
+			
+			<form class="viswrapper" action="/addVideo" method="POST">
+				<h2>Add Video</h2>
+				<label for="Category">Enter Category: </label>
+				<input id="Category" type="text" name="Category">
+				<br><br>
+				<label for="URL">Enter URL: </label>
+				<input id="URL" type="text" name="URL">
+				<br><br>
+				<label for="Description">Enter Description: </label>
+				<input id="Description" type="text" name="Description">
+				<br><br>
+				<!--Button to run the action in the form-->
+				<input type="submit" value="Save">
+			</form>
+			<!--Form to cancel-->
+			<br>
+			<form class="wrapper" action="/">
+				<input type="submit" value="Cancel" />
+			</form>
+		</div>		
+		
+		
+		
+		
+		
+		
+    </body>
+</html>

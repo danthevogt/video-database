@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music Library</title>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/1140/2.0/1140.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" />
+        <!--Link to CSS Stylesheet-->
+		<link rel="stylesheet" href="/styles.css" />
+		
+		<script>
+			function myFunction() {
+				var input, filter, table, tr, td, a, i, txtValue;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("table1");
+				tr = table.getElementsByTagName("tr")[2];
+				td = tr.getElementsByTagName("td");
+				for (i = 0; i < td.length; i++) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						td[i].style.display = "";
+					} else {
+						td[i].style.display = "none";
+					}
+				}
+			}
+		</script>
+		<link href='https://fonts.googleapis.com/css?family=Cedarville+Cursive' rel='stylesheet' type='text/css'>
+		
+    </head>
+
+    <body>
+		<script>
+			function Like() {
+				document.getElementById("LikeButton").submit();
+				test[i].VideoID = test[i].VideoID + 1;
+			}
+						
+		</script>
+		
+		
+		
+		<style>
+			
+			.heart{
+				position: relative;
+				width: 100px;
+				height: 90px;
+				float: left;
+			}
+			.heart:before,
+			.heart:after{
+				position: absolute;
+				content: "";
+				left: 50px;
+				top: 0;
+				width: 50px;
+				height: 80px;
+				background: #fc2e5a;
+				-moz-border-radius: 50px 50px 0 0;
+				border-radius: 50px 50px 0 0;
+				-webkit-transform: rotate(-45deg);
+				   -moz-transform: rotate(-45deg);
+					-ms-transform: rotate(-45deg);
+					 -o-transform: rotate(-45deg);
+						transform: rotate(-45deg);
+				-webkit-transform-origin: 0 100%;
+				   -moz-transform-origin: 0 100%;
+					-ms-transform-origin: 0 100%;
+					 -o-transform-origin: 0 100%;
+						transform-origin: 0 100%;
+			}
+			.heart:after{
+				left: 0;
+				-webkit-transform: rotate(45deg);
+				   -moz-transform: rotate(45deg);
+					-ms-transform: rotate(45deg);
+					 -o-transform: rotate(45deg);
+						transform: rotate(45deg);
+				-webkit-transform-origin: 100% 100%;
+				   -moz-transform-origin: 100% 100%;
+					-ms-transform-origin: 100% 100%;
+					 -o-transform-origin: 100% 100%;
+						transform-origin :100% 100%;
+			}
+		
+		</style>
+		
+		
+		
+       <!--Table to display the database--> 
+        <table id="table1" class="table">
+            <thread>
+                <br>
+					
+			<caption><h2>Video List</h2><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Category" title="Type in a category"></caption>
+				
+                    <!--Main headers-->
+                <tr>
+                    <th>Category</th>
+                    <th>URL</th>
+                    <th>Description</th>
+                    <th>Likes</th>
+                    <th></th>
+                </tr>
+            </thread>
+
+            <tbody>
+                <!--Test holds the data from Student that we passed to index
+                IOW, it holds the records from the table student we grabbed using the select knex-->
+               <!--For loop to put data into the table-->
+                <% for (var i = 0; i < test.length; i++) {%>
+				
+				<tr><th></th></tr>
+                    <tr>
+                        <td><%= test[i].Category %></td>
+                        <td><iframe src="<%= test[i].URL %>" width="400" height="225"></iframe></td>
+                        <td><%= test[i].Description %></td>
+                        <td><form id="LikeButton" action="/Like/<%= test[i].VideoID %>" method="POST">
+								<div id="right" class="heart" onClick="Like()" style="cursor: pointer;"></div><h2><%= test[i].Likes %></h2>
+                            </form>							
+						</td> 
+                    </tr>
+                <% }%>                   
+            </tbody>
+        </table>
+            
+        </div>
+		
+		
+		
+		
+		
+    </body>
+</html>

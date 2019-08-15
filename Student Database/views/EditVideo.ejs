@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Update Student</title>
+    <!--Link to CSS Stylesheet-->
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+    <!--Edit record-->
+	<form class="viswrapper" action="/EditVideo/<%= video[0].VideoID %>" method="POST">
+		<h2>Edit Video</h2>
+		<label for="Category">Category: </label>
+		<input class="lineup" id="Category" type="text" name="Category" value="<%= video[0].Category %>">
+		<br><br>
+		<label for="URL">URL: </label>
+		<input class="lineup" id="URL" type="text" name="URL" value="<%= video[0].URL %>">
+		<br><br>
+		<label for="Description">Description: </label>
+		<input class="lineup" id="Description" type="text" name="Description" value="<%= video[0].Description %>">
+		<br><br>
+		<input type="submit" value="Save">
+	</form>
+	
+    <!--Form to cancel-->
+	<br>
+	<form class="wrapper" action="/">   
+		<input type="submit" value="Cancel" />
+	</form><br>
+
+</body>
+
+</html>
